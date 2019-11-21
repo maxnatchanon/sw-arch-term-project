@@ -48,7 +48,7 @@ Leaderboard Service
 POST /updateScore
 - params -> username, score
 * call /updateScore API at db service
-GET /leaderboard
+GET /scoreLeaderboard
 - response -> leaderboard entity
 * call /leaderboard API at db and send the response back to client
 
@@ -65,7 +65,7 @@ POST /login
 POST /updateScore
 - params -> username, score
 * update both user entity and leaderboard entity
-GET /leaderboard
+GET /scoreLeaderboard
 - response -> leaderboard entity
 GET /problems
 - response -> all problem entities

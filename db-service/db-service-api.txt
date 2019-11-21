@@ -11,7 +11,7 @@ POST /login
 POST /updateScore
 - params -> username, score
 * update both user entity and leaderboard entity
-GET /leaderboard
+GET /scoreLeaderboard
 - response -> leaderboard entity
 GET /problems
 - response -> all problem entities
