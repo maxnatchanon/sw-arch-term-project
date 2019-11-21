@@ -1,0 +1,20 @@
+{
+    "problems" : 
+    [
+        {
+            "problemId" : 1,
+            "question" : "เราจะทำตามสัญญา",
+            "solution" : "ขอเวลาอีกไม่นาน"
+        },
+        {
+            "problemId" : 2,
+            "question" : "ประยุทธ์",
+            "solution" : "สู้ๆ"
+        },
+        {
+            "problemId" : 3,
+            "question" : "ประวิตร",
+            "solution" : "สู้ตาย"
+        }
+    ]
+}
