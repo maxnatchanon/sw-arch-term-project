@@ -3,7 +3,7 @@ POST /createUser
 - params -> username, password
 - response -> user entity
 * create new user and send back the new user entity
-* overwrite the existing user
+* error if the username has been taken
 POST /login
 - params -> username, password
 - response -> user entity
