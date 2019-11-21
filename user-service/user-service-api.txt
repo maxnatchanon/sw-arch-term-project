@@ -1,0 +1,8 @@
+User Service
+POST /register
+- params -> username, password
+- response -> user entity
+POST /login
+- params -> username, password
+- response -> user entity
+* error if user doesn't exist

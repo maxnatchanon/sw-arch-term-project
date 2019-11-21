@@ -1,0 +1,6 @@
+Problem Service
+GET /problem
+- response -> one random problem
+GET /checkResult
+- params -> problemId, answer
+- response -> a boolean indicating the correctness

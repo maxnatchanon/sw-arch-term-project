@@ -1,0 +1,20 @@
+Database Service
+POST /createUser
+- params -> username, password
+- response -> user entity
+* create new user and send back the new user entity
+* overwrite the existing user
+POST /login
+- params -> username, password
+- response -> user entity
+* error if user doesn't exist
+POST /updateScore
+- params -> username, score
+* update both user entity and leaderboard entity
+GET /leaderboard
+- response -> leaderboard entity
+GET /problem
+- response -> one random problem entity
+GET /checkResult
+- params -> problemId, answer
+- response -> a boolean indicating the correctness
