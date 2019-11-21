@@ -67,8 +67,5 @@ POST /updateScore
 * update both user entity and leaderboard entity
 GET /leaderboard
 - response -> leaderboard entity
-GET /problem
-- response -> one random problem entity
-GET /checkResult
-- params -> problemId, answer
-- response -> a boolean indicating the correctness
+GET /problems
+- response -> all problem entities
