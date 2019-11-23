@@ -9,7 +9,9 @@ app.get('/problem', (req, res) => {
 	if (problems.length === 0) {
 		res.status(500).send({ message: 'Cannot receive problems from database' })
 	} else {
-		res.send(problems[Math.floor(Math.random() * problems.length)])
+		var problem = problems[Math.floor(Math.random() * problems.length)]
+		delete problem.solution
+		res.send(problem)
 	}
 })
 
