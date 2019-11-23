@@ -3,6 +3,8 @@ var  app = express();
 var axios = require('axios');
 //var session = require('express-session');
 
+app.use(express.json())
+
 app.post('/register', (req, res) => {
 
     axios.post('localhost:9000/createUser',{
