@@ -1,37 +1,37 @@
 var  express = require('express');
 var  app = express();
 var axios = require('axios');
+app.use(express.json())
 //var session = require('express-session');
 
 app.post('/register', (req, res) => {
-
-    axios.post('localhost:9000/createUser',{
-        "username": req.body.username,
-        "password": req.body.password
+    const payload = req.body
+    axios.post('http://localhost:9000/createUser',{
+        "username": payload.username,
+        "password": payload.password
     })
     .then( response => {
-        res.send(response.data);
+        res.send(response.body);
         res.redirect('/home');
-  })
+    })
     .catch(error => {
-        console.log("ERROR");
-        res.status(error.response.status).send(error.response.data.message)
+        console.log(error.response.status);
+        res.status(error.response.status).send(error.response.data)
     })
 })
 
 app.post('/login', (req, res) => {
-
-    axios.post('localhost:9000/login',{
-        "username": req.body.username,
-        "password": req.body.password
+    const payload = req.body
+    axios.post('http://localhost:9000/login',{
+        "username": payload.username,
+        "password": payload.password
     })
     .then(response => {
         res.send(response.data);
         res.redirect('/home');
     })
     .catch(error => {
-        console.log("ERROR");
-        res.status(error.response.status).send(error.response.data.message)
+        res.status(error.response.status).send(error.response.data)
     })
 })
 
