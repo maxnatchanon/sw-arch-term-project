@@ -57,8 +57,10 @@ app.post('/updateScore',async(req,res) => {
     }
 })
 
-app.get('/problems',(req,res)=> {
-    res.json(problems.find({}))
+app.get('/problems',async (req,res)=> {
+    const problem_all = await problems.find({})
+    console.log(problem_all[0])
+    res.json(problem_all)
 })
 
 app.get('/scoreLeaderboard', async (req,res) => {
