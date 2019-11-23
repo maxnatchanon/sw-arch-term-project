@@ -1,0 +1,129 @@
+.main-page-container {
+    width: 100%;
+    height: 100%;
+}
+
+.main-page-header-container {
+    padding: 16px;
+    width: calc(100% - 32px);
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-page-header-user-section > p {
+    margin: 4px 0;
+    font-size: 1.2em;
+}
+
+.main-page-header-user-section > p > span {
+    font-weight: 500;
+}
+
+.main-page-header-container > button {
+    height: 36px;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 0 16px;
+    border-color: transparent;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(163, 163, 163);
+    transition: 0.1s ease-in-out;
+}
+
+.main-page-header-container > button:focus,
+.main-page-header-container > button:hover {
+    outline: none;
+    background-color: rgb(187, 187, 187);
+}
+
+.main-page-content-container {
+    height: calc(100% - 96px - 32px);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.main-page-problem-section {
+    width: 60%;
+}
+
+.main-page-problem-section > div {
+    margin: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-page-problem-section > div > span {
+    font-size: 2em;
+    text-align: center;
+}
+
+.main-page-problem-section > div > input {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 1.8em;
+    padding: 12px 0;
+    border-radius: 4px;
+    border: none;
+    border: solid 1px rgb(206, 206, 206);
+}
+
+.main-page-problem-section > div > button {
+    height: 48px;
+    font-size: 1.4em;
+    font-weight: 500;
+    padding: 8px 0;
+    margin: 20px 30% 0 30%;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(255, 166, 0);
+    color: white;
+    transition: 0.1s ease-in-out;
+}
+
+.main-page-problem-section > div > button:hover,
+.main-page-problem-section > div > button:focus {
+    border: none;
+    background-color: rgb(252, 191, 78);
+}
+
+
+.main-page-problem-section > div > div {
+    font-size: 1.4em;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.main-page-leaderboard-section {
+    margin-left: 10%;
+    width: 30%;
+    height: calc(100% - 96px - 32px);
+    font-size: 1.25em;
+}
+
+.main-page-leaderboard-header {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.main-page-leaderboard-user {
+    margin-bottom: 4px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-page-leaderboard-user-me {
+    font-weight: 600;
+    margin-bottom: 6px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
