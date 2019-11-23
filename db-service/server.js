@@ -19,15 +19,18 @@ app.post('/createUser',async (req,res) => {
         const findUser = await users.find({username: payload.username})
         if(findUser.length > 0 ) {
             res.status(400).send({ message: 'This username has been taken' })
+            console.log('This username has been taken')
         }
         else {
              const user = new users({username: payload.username, password: payload.password, score: 0})
              await user.save()
              res.json('Create Success: ' + payload.username)
+             console.log('Create Success' + payload.username)
 
         }
     } else {
         res.status(400).send({ message: 'Invalid Username or Password' })
+        console.log('Invalid Username or Password')
     }
 })
 
