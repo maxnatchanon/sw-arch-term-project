@@ -72,4 +72,13 @@ app.get('/scoreLeaderboard', async (req,res) => {
 
 app.listen(9000, () => {
   console.log('Application is running on port 9000')
+  addProblemsToDB()
 })
+
+async function addProblemsToDB(){
+    let jsonData = require('./problems.json');
+    await problems.deleteMany({})
+    await problems.insertMany(jsonData)
+    console.log("Complete To Add Problems")
+    
+}
