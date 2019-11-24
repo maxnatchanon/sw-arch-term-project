@@ -13,7 +13,7 @@ app.post('/register', (req, res) => {
         "password": payload.password
     })
     .then( response => {
-        res.send(response.body);
+        res.send(response.data);
         res.redirect('/home');
     })
     .catch(error => {
