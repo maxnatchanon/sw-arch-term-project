@@ -4,10 +4,9 @@ const axios = require('axios')
 
 app.use(express.json())
 
-var port = 8082
-
 app.get('/problem', (req, res) => {
-	console.log('Call Problem service: executing /problem')
+    var port = (Math.random()<0.5) ? (8080) : (8081);
+	console.log('Call Problem service: executing /problem at port='+port)
     axios.get('http://localhost:'+port+'/createUser')
     .then( response => {
         res.send(response.body);
@@ -19,7 +18,8 @@ app.get('/problem', (req, res) => {
 })
 
 app.get('/checkResult', (req, res) => {
-	console.log('Call Problem service: executing /checkResult')
+    var port = (Math.random()<0.5) ? (8080) : (8081);
+	console.log('Call Problem service: executing /checkResult at port='+port)
     axios.get('http://localhost:'+port+'/checkResult')
     .then( response => {
         res.send(response.body);
@@ -33,7 +33,7 @@ app.get('/checkResult', (req, res) => {
 app.post('/register', (req, res) => {
 	console.log('Call User service: executing /register')
 	const payload = req.body
-    axios.post('http://localhost:8081/register',payload)
+    axios.post('http://localhost:7000/register',payload)
     .then( response => {
         res.send(response.body);
     })
@@ -46,7 +46,7 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
 	console.log('Call User service: executing /login')
 	const payload = req.body
-    axios.post('http://localhost:8081/login',payload)
+    axios.post('http://localhost:7000/login',payload)
     .then( response => {
         res.send(response.body);
     })
@@ -81,7 +81,7 @@ app.get('/scoreLeaderboard', (req, res) => {
     })
 })
 
-var server = app.listen(8080, function () {
+var server = app.listen(5000, function () {
     var host = server.address().address
     var port = server.address().port
     
