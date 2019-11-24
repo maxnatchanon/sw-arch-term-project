@@ -24,7 +24,7 @@ app.post('/createUser',async (req,res) => {
         else {
              const user = new users({username: payload.username, password: payload.password, score: 0})
              await user.save()
-             res.json('Create Success: ' + payload.username)
+             res.json({username: payload.username,score: 0})
              console.log('Create Success' + payload.username)
 
         }
@@ -54,7 +54,10 @@ app.post('/updateScore',async(req,res) => {
                 $set: { score: payload.score}
             }
         )
-        res.json(payload)
+        console.log("Update Score Successfully")
+        const board = await users.find({} ,{ username: 1,score :1 }).sort({ score: -1 })
+        console.log(board)
+        res.json(board)
     } else {
         res.status(400).send({ message: 'Invalid Username or Password' })
     }
@@ -67,7 +70,7 @@ app.get('/problems',async (req,res)=> {
 })
 
 app.get('/scoreLeaderboard', async (req,res) => {
-    const board = await users.find({} ,{ username: 1,score :1 }).sort({ score: 1 })
+    const board = await users.find({} ,{ username: 1,score :1 }).sort({ score: -1 })
     console.log(board)
    // delete
     res.json(board)
