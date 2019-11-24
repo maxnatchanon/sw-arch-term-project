@@ -7,9 +7,9 @@ var scoreCache
 
 app.use(express.json())
 
-app.get('/scoreLeaderboard', (req, res) => {
+app.get('/scoreLeaderboard', async (req, res) => {
     if (scoreCache === undefined) {
-        axios.get('localhost:9000/scoreLeaderboard')
+        await axios.get('http://localhost:9000/scoreLeaderboard')
         .then(response => {
             scoreCache = response.data
             console.log('Successfully received a leaderboard from database')
@@ -21,14 +21,17 @@ app.get('/scoreLeaderboard', (req, res) => {
             return
         })
     }
-    res.status(200).json(scoreCache)
+    console.log(scoreCache)
+    res.json(scoreCache)
 })
 
 app.post('/updateScore', (req, res) => {
-    axios.post('localhost:9000/updateScore', req.body)
+    console.log(req.body)
+    axios.post('http://localhost:9000/updateScore', req.body)
     .then(response => {
         scoreCache = response.data
-        console.log('Updated the user score')
+        res.send(scoreCache)
+        console.log(scoreCache)
     })
     .catch(error => {
         console.log('Failed to update the user score')
