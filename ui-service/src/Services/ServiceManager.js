@@ -1,33 +1,83 @@
+import React from 'react';
+import axios from 'axios';
+
+const GATEWAY_PORT = 5000
 class ServiceManger {
     static register(user, callback) {
-        // TODO: Call register API
-        // username -> user.username
-        // password -> user.password
-        // callback(user, error)
+        axios.post('http://localhost:'+GATEWAY_PORT+'/register',user)
+            .then(response => {
+                console.log(response.data)
+                callback(response.data,undefined)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+                callback(undefined,error.response.data.message)
+            })
     }
 
     static login(user, callback) {
-        // TODO: Call login API
-        // username -> user.username
-        // password -> user.password
-        // callback(user, errorMessage)
+        axios.post('http://localhost:'+GATEWAY_PORT+'/login',user)
+            .then(response => {
+                console.log(response.data)
+                callback(response.data,undefined)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+                callback(undefined,error.response.data.message)
+            })
     }
 
     static getProblem(callback) {
         // TODO: Call problem API
-        // callback(problem, errorMessage)
+        axios.get('http://localhost:'+GATEWAY_PORT+'/problems')
+            .then(response => {
+                console.log(response.data)
+                callback(response.data,undefined)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+                callback(undefined,error.response.data.message)
+            })
     }
 
     static checkResult(input, callback) {
-        // TODO: Call check result API
-        // problemId -> input.problemId
-        // answer -> input.answer
-        // callback(result(boolean), errorMessage)
+        axios.get('http://localhost:'+GATEWAY_PORT+'/checkResult', {
+            params: {
+                problemId : input.problemId,
+                answer : input.answer
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                callback(response.data,undefined)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+                callback(undefined,error.response.data.message)
+            })
     }
 
     static getLeaderboard(callback) {
-        // TODO: Call leaderboard API
-        // callback(leaderboard, errorMessage)
+        axios.get('http://localhost:'+GATEWAY_PORT+'/scoreLeaderboard')
+            .then(response => {
+                console.log(response.data)
+                callback(response.data,undefined)
+            })
+            .catch(error => {
+                console.log(error.response.data)
+                callback(undefined,error.response.data)
+            })
+    }
+
+    static updateScore(user,callback) {
+        axios.post('http://localhost:'+GATEWAY_PORT+'/updateScore',user)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+                callback(undefined,error.response.data.message)
+            })
     }
 }
 

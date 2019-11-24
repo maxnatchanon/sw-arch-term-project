@@ -88,6 +88,7 @@ class MainPage extends Component {
                             user: user,
                             answer: '',
                         });
+                        this.updateScore()
                         this.getProblem()
                     } else {
                         alert('FALSE');
@@ -95,6 +96,14 @@ class MainPage extends Component {
                 }
             }
         )
+    }
+
+    updateScore(){
+         ServiceManager.updateScore(this.state.user,(leaderboard, errorMessage) => {
+            if (errorMessage) {
+                alert(errorMessage);
+            } 
+        })
     }
 
     render() {
