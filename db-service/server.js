@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/createUser',async (req,res) => {
+    console.log("Executing Path /createUser")
     const payload = req.body
-    console.log(payload)
     if(payload.username != null && payload.password != null) {
         const findUser = await users.find({username: payload.username})
         if(findUser.length > 0 ) {
@@ -35,6 +35,7 @@ app.post('/createUser',async (req,res) => {
 })
 
 app.post('/login',async(req,res) => {
+    console.log("Executing Path /login")
     const payload = req.body
     const findUser = await users.find({ username: payload.username,password: payload.password })
     if( findUser.length > 0){
@@ -45,6 +46,7 @@ app.post('/login',async(req,res) => {
 })
 
 app.post('/updateScore',async(req,res) => {
+    console.log("Executing Path /updateScore")
     const payload = req.body
     const findUser = await users.find({username: payload.username})
     if (findUser.length > 0) {
@@ -56,7 +58,6 @@ app.post('/updateScore',async(req,res) => {
         )
         console.log("Update Score Successfully")
         const board = await users.find({} ,{ username: 1,score :1 }).sort({ score: -1 })
-        console.log(board)
         res.json(board)
     } else {
         res.status(400).send({ message: 'Invalid Username or Password' })
@@ -64,15 +65,17 @@ app.post('/updateScore',async(req,res) => {
 })
 
 app.get('/problems',async (req,res)=> {
+    console.log("Executing Path /problems")
     const problem_all = await problems.find({})
-    console.log(problem_all[0])
+    console.log("Successfully")
     res.json(problem_all)
 })
 
 app.get('/scoreLeaderboard', async (req,res) => {
+    console.log("Executing Path /scoreLeaderboard")
     const board = await users.find({} ,{ username: 1,score :1 }).sort({ score: -1 })
-    console.log(board)
-   // delete
+    console.log("Successfully")
+    
     res.json(board)
 })
 
@@ -83,6 +86,7 @@ app.listen(9000, () => {
 
 async function addProblemsToDB(){
     let jsonData = require('./problems.json');
+    console.log("Adding Problem to the Database")
     await problems.deleteMany({})
     await problems.insertMany(jsonData)
     console.log("Complete To Add Problems")
