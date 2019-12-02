@@ -53,7 +53,7 @@ class LoginPage extends Component {
             <div className='login-page-container'>
                 <div>
                     <input name='username' placeholder='Username' onChange={(e) => this.handleInputChange(e)}/>
-                    <input name='password' placeholder='Password' onChange={(e) => this.handleInputChange(e)}/>
+                    <input name='password' placeholder='Password' type = 'password' onChange={(e) => this.handleInputChange(e)}/>
                     <div>
                         <button onClick={this.handleLoginButton}>Log in</button>
                         <button onClick={this.handleRegisterButton}>Register</button>

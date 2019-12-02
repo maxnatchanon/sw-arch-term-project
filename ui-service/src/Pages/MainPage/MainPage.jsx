@@ -80,19 +80,17 @@ class MainPage extends Component {
                     this.setState({
                         showResultText: true,
                         correct: correct,
+                        answer : ''
                     });
                     if (correct) {
                         var user = this.state.user;
                         user.score += 1;
                         this.setState({
-                            user: user,
-                            answer: '',
+                            user: user
                         });
                         this.updateScore()
                         this.getProblem()
-                    } else {
-                        alert('FALSE');
-                    }
+                    } 
                 }
             }
         )
@@ -119,11 +117,11 @@ class MainPage extends Component {
                 <div className='main-page-content-container'>
                     <div className='main-page-problem-section'>
                         <div>
-                            <span>{this.state.problem.question}&emsp;_________________</span>
+                            <span>{this.state.problem.question}&emsp;_________________?</span>
                             <input value={this.state.answer} onChange={(e) => this.handleAnswerChange(e)}/>
                             <button onClick={this.handleSubmit}>SUBMIT</button>
                             <div
-                            style={{color: this.state.correct ? 'green' : 'red', opacity: this.state.showResultText ? '1' : '0'}}
+                            style={{color: this.state.correct ? 'red' : 'green', opacity: this.state.showResultText ? '1' : '0'}}
                             >
                                 {this.state.correct ? 'Correct!' : 'Incorrect!'}
                             </div>

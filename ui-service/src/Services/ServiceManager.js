@@ -10,7 +10,7 @@ class ServiceManger {
                 callback(response.data,undefined)
             })
             .catch(error => {
-                console.log(error.response.data.message)
+               // console.log(error.response.data.message)
                 callback(undefined,error.response.data.message)
             })
     }
