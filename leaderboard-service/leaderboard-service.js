@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
 const axios = require('axios').default
-
-const PORT = 6000
 var scoreCache
 
 app.use(express.json())
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/scoreLeaderboard', async (req, res) => {
     if (scoreCache === undefined) {
@@ -41,6 +45,21 @@ app.post('/updateScore', (req, res) => {
     })
 })
 
-app.listen(PORT, () => {
-    console.log('Started leaderboard service at port ' + PORT)
+app.listen(process.env.PORT, () => {
+    console.log('Started leaderboard service at port ' + process.env.PORT)
+    registerService(process.env.PORT)
 })
+
+function registerService(servicePort){
+    console.log(servicePort)
+    axios.post('http://localhost:5000/addService',{
+        servicePort : servicePort,
+        serviceNumber : 2
+    })
+        .then(response => {
+            console.log('registerServiceSuccessFully')
+        })
+        .catch(error => {
+            console.log('Connot RegisterService')
+        })
+}

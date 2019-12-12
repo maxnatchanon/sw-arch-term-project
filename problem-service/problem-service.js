@@ -2,6 +2,13 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var problems = []
 
 app.get('/problems', (req, res) => {
@@ -30,8 +37,23 @@ app.get('/checkResult', async (req, res) => {
 
 app.listen(process.env.PORT, () => {
  	console.log('Start problem service at port ' + process.env.PORT)
+ 	registerService(process.env.PORT)
  	getProblems()
 })
+
+function registerService(servicePort){
+	console.log(servicePort)
+	axios.post('http://localhost:5000/addService',{
+		servicePort : servicePort,
+		serviceNumber : 0
+	})
+		.then(response => {
+			console.log('registerServiceSuccessFully')
+		})
+		.catch(error => {
+			console.log('Connot RegisterService')
+		})
+}
 
 function getProblems() {
 	axios.get('http://localhost:9000/problems')
@@ -46,3 +68,4 @@ function getProblems() {
 			setTimeout(getProblems, 5000)
 		})
 }
+

@@ -6,6 +6,12 @@ app.use(express.json())
 
 app.use(express.json())
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.post('/register', (req, res) => {
     const payload = req.body
     axios.post('http://localhost:9000/createUser',{
@@ -37,9 +43,22 @@ app.post('/login', (req, res) => {
     })
 })
 
-var server = app.listen(7000, function () {
-   var host = server.address().address
-   var port = server.address().port
-   
-   console.log("User service listening at http://%s:%s", host, port)
+app.listen(process.env.PORT, () => {
+    console.log('Started User service at port ' + process.env.PORT)
+    registerService(process.env.PORT)
 })
+
+
+function registerService(servicePort){
+    console.log(servicePort)
+    axios.post('http://localhost:5000/addService',{
+        servicePort : servicePort,
+        serviceNumber : 1
+    })
+        .then(response => {
+            console.log('registerServiceSuccessFully')
+        })
+        .catch(error => {
+            console.log('Connot RegisterService')
+        })
+}
