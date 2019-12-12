@@ -15,7 +15,6 @@ app.use(function(req, res, next) {
 
 function randomIndex(serviceNumber){
     var randomNumber = (parseInt(Math.random()*100))%services[serviceNumber].length
-    console.log('numofPort = ',services[serviceNumber].length)
     return randomNumber
 }
 
