@@ -33,5 +33,15 @@
         "problemId" : "7",
         "question" : "ช้างช้างช้าง",
         "solution" : "น้องเคยเห็นช้างหรือเปล่า"
-    }
+    },
+    {
+        "problemId" : "8",
+        "question" : "ออกอาวุธ ออกอาวุธ",
+        "solution" : "ที่พัฒนามาเป็นชุด"
+    },
+    {
+        "problemId" : "9",
+        "question" : "Oh my pretty pretty girl I love you",
+        "solution" : "Like I never ever love no one before you"
+    },
 ]
