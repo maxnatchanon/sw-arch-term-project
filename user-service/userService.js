@@ -12,6 +12,21 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.post('/delete', (req, res) => {
+    const payload = req.body
+    axios.post('http://localhost:9000/deleteUser',{
+        "username": payload.username,
+    })
+    .then( response => {
+        res.send(response.data);
+        res.redirect('/home');
+    })
+    .catch(error => {
+        console.log(error.response.status);
+        res.status(error.response.status).send(error.response.data)
+    })
+})
+
 app.post('/register', (req, res) => {
     const payload = req.body
     axios.post('http://localhost:9000/createUser',{
