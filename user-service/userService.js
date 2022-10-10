@@ -2,13 +2,14 @@ var  express = require('express');
 var  app = express();
 var axios = require('axios');
 app.use(express.json())
-//var session = require('express-session');
+var session = require('express-session');
 
 app.use(express.json())
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Content-Language", "th")
   next();
 });
 
@@ -19,11 +20,12 @@ app.post('/delete', (req, res) => {
     })
     .then( response => {
         res.send(response.data);
-        res.redirect('/home');
+        res.redirect('/');
     })
     .catch(error => {
-        console.log(error.response.status);
-        res.status(error.response.status).send(error.response.data)
+        let response = error.response
+        console.log(response.status);
+        res.status(response.status).send(response.data)
     })
 })
 
@@ -35,7 +37,7 @@ app.post('/register', (req, res) => {
     })
     .then( response => {
         res.send(response.data);
-        res.redirect('/home');
+        res.redirect('/');
     })
     .catch(error => {
         console.log(error.response.status);
@@ -66,12 +68,12 @@ app.listen(process.env.PORT, () => {
 
 function registerService(servicePort){
     console.log(servicePort)
-    axios.post('http://localhost:5000/addService',{
+    axios.post('http://localhost:3000/addService',{
         servicePort : servicePort,
         serviceNumber : 1
     })
         .then(response => {
-            console.log('registerServiceSuccessFully')
+            console.log('register Service SuccessFully')
         })
         .catch(error => {
             console.log('Connot RegisterService')
